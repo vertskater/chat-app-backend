@@ -1,0 +1,4 @@
+import express from 'express';
+const app = express();
+
+app.listen(process.env.PORT || 3000, () => console.log('server listen to Port 3000'))
