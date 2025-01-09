@@ -1,8 +1,9 @@
 import * as crypto from 'node:crypto'
 import * as fs from'node:fs';
 import * as path from 'node:path';
+import jsonwebtoken from 'jsonwebtoken';
 
-const pathToKey = path.join(__dirname, "..", "id_rsa_priv.pem");
+const pathToKey = path.join(import.meta.dirname, "..", "id_rsa_priv.pem");
 const PRIV_KEY = fs.readFileSync(pathToKey, "utf8");
 
 export const genPassword = (password) => {

@@ -1,0 +1,14 @@
+import * as http from 'node:http';
+import {Server} from 'socket.io'
+import chatSocket from './sockets/chatSocket.js'
+import app from './app.js'
+
+const server = http.createServer(app);
+const io = new Server(server);
+
+chatSocket(io);
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT);
+
+

@@ -6,13 +6,13 @@ const alphaError = "must have Alphabetical characters.";
 const lengthError = "must have at least 5 and max 30 characters";
 
 const validationSchema = [
-  body("forename")
+  body("firstname")
     .isAlpha()
     .withMessage(`forename ${alphaError}`)
     .isLength({ min: 5, max: 30 })
     .withMessage(`forename ${lengthError}`)
     .trim(),
-  body("surname")
+  body("lastname")
     .isAlpha()
     .withMessage(`surname ${alphaError}`)
     .isLength({ min: 5, max: 30 })
@@ -31,7 +31,7 @@ const validationSchema = [
   body("password")
     .trim()
     .isLength({ min: 4 })
-    .withMessage("password must have at least 12 characters")
+    .withMessage("password must have at least 4 characters")
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/)
     .withMessage(
       "Password must be at least 12 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character"

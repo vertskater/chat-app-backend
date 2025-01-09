@@ -1,4 +1,16 @@
 import express from 'express';
+import passport from 'passport'
+import passportConfig from './utils/passportConfig.js'
+import authRoutes from './routes/authRoutes.js'
+import chatRoutes from './routes/chatRoutes.js'
 const app = express();
 
-app.listen(process.env.PORT || 3000, () => console.log('server listen to Port 3000'))
+// Middleware
+app.use(express.json());
+passportConfig(passport);
+app.use(passport.initialize());
+
+app.use('/auth', authRoutes);
+app.use('/chat', chatRoutes);
+
+export default app;

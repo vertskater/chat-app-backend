@@ -1,10 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const prisma = require('./prismaClient.js');
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import prisma from './prismaClient.js'
+import { Strategy } from 'passport-jwt';
+import { ExtractJwt } from 'passport-jwt'
 
-const pathToKey = path.join(__dirname, '..', 'id_rsa_pub.pem');
+//const ExtractJwt = require('passport-jwt').ExtractJwt;
+const JwtStrategy = Strategy;
+
+const pathToKey = path.join(import.meta.dirname, '..', 'id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
 
 const options = {
@@ -30,6 +33,6 @@ const strategy = new JwtStrategy(options, async (payload, done) => {
   }
 });
 
-module.exports = (passport) => {
+export default (passport) => {
   passport.use(strategy);
 }
