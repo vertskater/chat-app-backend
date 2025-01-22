@@ -3,7 +3,6 @@ import * as path from 'node:path';
 import prisma from './prismaClient.js'
 import { Strategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt'
-
 //const ExtractJwt = require('passport-jwt').ExtractJwt;
 const JwtStrategy = Strategy;
 

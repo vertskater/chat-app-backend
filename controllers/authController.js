@@ -94,7 +94,7 @@ export const login = async (req, res, next) => {
         success: true,
         msg: "jwt token issued, you are logged in",
         token: jwt.token,
-        email: user.email,
+        userId: user.id,
         expiresIn: jwt.expires,
       });
     }

@@ -38,7 +38,7 @@ export const issueJwt = (user) => {
   const expiresIn = "1d";
   const payload = {
     sub: _id,
-    iat: Date.now(),
+    iat: Date.now()
   };
 
   const signedToken = jsonwebtoken.sign(payload, PRIV_KEY, {
