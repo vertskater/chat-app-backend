@@ -1,25 +1,12 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import prisma from './prismaClient.js'
 import { Strategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt'
+import {loadFile} from './utils.js'
+
 const JwtStrategy = Strategy;
 
 // Correctly resolve __dirname for ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// Resolve the path to the public key
-const pathToKey = path.resolve(__dirname, '..', 'id_rsa_pub.pem');
-
-// Read the public key
-let PUB_KEY;
-try {
-  PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
-} catch (err) {
-  console.error(`Failed to read public key at ${pathToKey}:`, err.message);
-  throw new Error('Public key file not found or unreadable.');
-}
+let PUB_KEY = loadFile('id_rsa_pub.pem')
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

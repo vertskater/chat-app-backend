@@ -1,10 +1,26 @@
 import * as crypto from 'node:crypto'
-import * as fs from'node:fs';
+import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import jsonwebtoken from 'jsonwebtoken';
 
-const pathToKey = path.join(import.meta.dirname, "..", "id_rsa_priv.pem");
-const PRIV_KEY = fs.readFileSync(pathToKey, "utf8");
+
+
+export const loadFile = (file) => {
+  // Correctly resolve __dirname for ES Modules
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+// Resolve the path to the public key
+  const pathToKey = path.resolve(__dirname, '..', file);
+// Read the public key
+  try {
+    return fs.readFileSync(pathToKey, 'utf8');
+  } catch (err) {
+    console.error(`Failed to read public key at ${pathToKey}:`, err.message);
+    throw new Error('Public key file not found or unreadable.');
+  }
+}
+let PRIV_KEY = loadFile('id_rsa_priv.pem');
 
 export const genPassword = (password) => {
   const salt = crypto.randomBytes(32).toString("hex");
