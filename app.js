@@ -5,11 +5,8 @@ import authRoutes from './routes/authRoutes.js'
 import chatRoutes from './routes/chatRoutes.js'
 import cors from 'cors';
 const app = express();
-app.use(express.json());
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
-app.use(cors());
-
-/*{
+app.use(cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
@@ -18,14 +15,16 @@ app.use(cors());
       }
     },
     credentials: true,
-  }*/
+  }
+));
 
 // Middleware
+
 passportConfig(passport);
+
 app.use(passport.initialize());
 
 app.use('/auth',  authRoutes);
 app.use('/chat', chatRoutes);
-
 
 export default app;
