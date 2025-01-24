@@ -1,5 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'fs';
+import * as path from 'path';
 import prisma from './prismaClient.js'
 import { Strategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt'
