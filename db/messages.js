@@ -11,6 +11,7 @@ export const fetchMessages = async (room) => {
 export const saveMessage = async (msg) => {
     return prisma.message.create({
       data: { content: msg.content, room: msg.room, userId: msg.userId },
+      include: { user: { select: { username: true } } },
     });
 };
 

@@ -49,7 +49,7 @@ export const register = [
     if (!errors.isEmpty()) {
       return res.status(400).json({
         success: false,
-        msg: "user credentials not matching requirements",
+        msg: "user credentials not matching requirements!",
         errorInfo: errors,
       });
     }
@@ -95,6 +95,7 @@ export const login = async (req, res, next) => {
         msg: "jwt token issued, you are logged in",
         token: jwt.token,
         userId: user.id,
+        username: user.username,
         expiresIn: jwt.expires,
       });
     }
