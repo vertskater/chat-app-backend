@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173', // Allow your frontend's URL
+    origin: 'http://81.223.31.66', // Allow your frontend's URL
     methods: ['GET', 'POST'],       // Specify allowed methods
     credentials: true,              // Allow cookies or authorization headers
   }});
