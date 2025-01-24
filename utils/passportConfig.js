@@ -5,8 +5,19 @@ import { Strategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt'
 const JwtStrategy = Strategy;
 
-const pathToKey = path.join(import.meta.dirname, '..', 'id_rsa_pub.pem');
-const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// Ensure the file path resolves correctly even in different environments
+const pathToKey = path.join(__dirname, '..', 'id_rsa_pub.pem');
+
+// Read the public key
+let PUB_KEY;
+try {
+  PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
+} catch (err) {
+  console.error(`Failed to read public key at ${pathToKey}:`, err.message);
+  throw new Error('Public key file not found or unreadable.');
+}
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
