@@ -4,7 +4,6 @@ import chatSocket from './sockets/chatSocket.js'
 import app from './app.js'
 import authenticateSocket from './controllers/authSocket.js'
 
-
 const server = http.createServer(app);
 
 const io = new Server(server, {

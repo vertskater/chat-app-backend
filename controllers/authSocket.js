@@ -1,10 +1,7 @@
 import jwt from 'jsonwebtoken'
-import * as path from 'node:path'
-import * as fs from 'node:fs'
+import {loadFile} from '../utils/utils.js'
 
-
-const pathToKey = path.join(import.meta.dirname, '..', 'id_rsa_pub.pem');
-const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
+const PUB_KEY = loadFile('id_rsa_pub.pem')
 
 const authenticateSocket = (socket, next) => {
   const token = socket.handshake.auth.token; // Extract the token
