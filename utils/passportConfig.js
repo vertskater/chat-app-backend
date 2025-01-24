@@ -1,9 +1,8 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import prisma from './prismaClient.js'
 import { Strategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt'
-//const ExtractJwt = require('passport-jwt').ExtractJwt;
 const JwtStrategy = Strategy;
 
 const pathToKey = path.join(import.meta.dirname, '..', 'id_rsa_pub.pem');
