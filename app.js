@@ -5,7 +5,7 @@ import authRoutes from './routes/authRoutes.js'
 import chatRoutes from './routes/chatRoutes.js'
 import cors from 'cors';
 const app = express();
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "http://81.223.31.66"];
+const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "https://chat-app-frontend-one-omega.vercel.app/"];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
