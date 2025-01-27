@@ -8,15 +8,13 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://chat-app-frontend-one-omega.vercel.app/', // Allow your frontend's URL
+    origin: 'https://chat-app-frontend-one-omega.vercel.app', // Allow your frontend's URL
     methods: ['GET', 'POST'],       // Specify allowed methods
     credentials: true,              // Allow cookies or authorization headers
   }});
 
-
 io.use(authenticateSocket);
 chatSocket(io);
-
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT);
